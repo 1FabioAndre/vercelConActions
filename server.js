@@ -14,7 +14,8 @@ app.use(morgan('dev'));
 
 // Rutas
 app.get('/', (req, res) => {
-  res.json({ message: 'Hola desde tu API en Vercel!' });
+  //res.json({ message: 'Hola desde tu API en Vercel!' });
+  res.json({ message: '¡Hola! Bienvenido a tu miniproyecto en staging!' });
 });
 
 app.get('/saludo', (req, res) => {
