@@ -55,7 +55,7 @@ jobs:
 
       - name: Set Environment Variables
         run: |
-          echo "PGHOST=${{ secrets.PGHOST }}" > ../.env
+          echo "PGHOST=${{ secrets.PGHOST }}" > .env
           echo "PGDATABASE=${{ secrets.PGDATABASE }}" >> ./server/.env
           echo "PGUSER=${{ secrets.PGUSER }}" >> ./server/.env
           echo "PGPASSWORD=${{ secrets.PGPASSWORD }}" >> ./server/.env
