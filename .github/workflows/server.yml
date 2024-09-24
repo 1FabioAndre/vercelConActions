@@ -37,3 +37,33 @@ jobs:
       - name: Deploy to Vercel (Staging)
         run: |
           vercel deploy --token ${{ secrets.VERCEL_TOKEN }} -y
+
+  deployment_vercel_backend_production:
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/vercelbranch'
+      environment: production
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v4
+
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: '16'
+
+        - name: Set Environment Variables
+          run: |
+            echo "PGHOST=${{ secrets.PGHOST }}" > .env
+            echo "PGDATABASE=${{ secrets.PGDATABASE }}" >> .env
+            echo "PGUSER=${{ secrets.PGUSER }}" >> .env
+            echo "PGPASSWORD=${{ secrets.PGPASSWORD }}" >> .env
+            echo "PGPORT=${{ secrets.PGPORT }}" >> .env
+            echo "REACT_APP_AUTH_TOKEN=${{ secrets.REACT_APP_AUTH_TOKEN }}" >> .env
+
+        - name: Install Vercel CLI
+          run: |
+            npm install -g vercel
+
+        - name: Deploy to Vercel (Production)
+          run: |
+            vercel deploy --prod --token ${{ secrets.VERCEL_TOKEN }} -y
