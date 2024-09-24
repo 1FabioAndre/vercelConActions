@@ -36,5 +36,4 @@ jobs:
 
       - name: Deploy to Vercel (Staging)
         run: |
-          cd ./server
           vercel deploy --token ${{ secrets.VERCEL_TOKEN }} -y
